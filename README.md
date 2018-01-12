@@ -1,3 +1,4 @@
+Hello
 # tunelyLab
 ## Overview
 * serve the album data from our server's /api/ routes.
@@ -10,14 +11,14 @@
 * add a second major route for artist information (mongoose reference)
 
 
-Create a public folder with static images 
+Create a public folder with static images
    * HTML - Chris
    * CSS - Tess
    * JS - All
 
 Create app.js file with middleware - Neo
 
-Routes file - Tess 
+Routes file - Tess
 
 Create database - Tess
 
