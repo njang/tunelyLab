@@ -9,7 +9,7 @@
 * support storing song information (with full CRUD) (mongoose embedded)
 * add a second major route for artist information (mongoose reference)
 
-HULLO
+HULLO FOOLIOS</br>
 Create a public folder with static images
    * HTML - Chris
    * CSS - Tess
