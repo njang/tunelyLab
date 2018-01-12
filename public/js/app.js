@@ -38,8 +38,9 @@ sampleAlbums.push({
 
 
 $(document).ready(function() {
-  // console.log('app.js loaded!');
-  renderAlbum(sampleAlbums[2]);
+  sampleAlbums.forEach((anAlbum) => {
+    renderAlbum(anAlbum);    
+  })
 });
 
 
@@ -49,14 +50,13 @@ $(document).ready(function() {
 // this function takes a single album and renders it to the page
 function renderAlbum(album) {
   console.log('rendering album:', album);
-
-  var albumHtml =
+  let albumHtml =
   "        <!-- one album -->" +
-  "        <div class='row album' data-album-id='" + "HARDCODED ALBUM ID" + "'>" +
+  // "        <div class='row album' data-album-id='" + "HARDCODED ALBUM ID" + "'>" +
   "          <div class='col-md-10 col-md-offset-1'>" +
   "            <div class='panel panel-default'>" +
   "              <div class='panel-body'>" +
-  "              <!-- begin album internal row -->" +
+  "                <!-- begin album internal row -->" +
   "                <div class='row'>" +
   "                  <div class='col-md-3 col-xs-12 thumbnail album-art'>" +
   "                     <img src='" + "http://placehold.it/400x400'" +  " alt='album image'>" +
@@ -79,16 +79,14 @@ function renderAlbum(album) {
   "                  </div>" +
   "                </div>" +
   "                <!-- end of album internal row -->" +
-
   "              </div>" + // end of panel-body
-
   "              <div class='panel-footer'>" +
   "              </div>" +
-
   "            </div>" +
   "          </div>" +
-  "          <!-- end one album -->";
+  // "        </div>" +  
+  "        <!-- end one album -->";
 
   // render to the page with jQuery
-  $('.album').html(albumHtml);
+  $('.album').append(albumHtml);
 }
