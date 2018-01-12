@@ -1,8 +1,7 @@
-Hello
 # tunelyLab
+
 ## Overview
-bbbbbbbbbbbbbb
-dodododoodododo
+
 * serve the album data from our server's /api/ routes.
 * get the data from the server using ajax and display it on the page with jQuery
 * retrieve the data from the database
