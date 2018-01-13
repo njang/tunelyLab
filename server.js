@@ -4,6 +4,7 @@
 var express = require('express');
 // generate a new express app and call it 'app'
 var app = express();
+//var router = require('Routes');
 
 // serve static files from public folder
 app.use(express.static(__dirname + '/public'));
@@ -57,7 +58,6 @@ app.get('/', function homepage (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-
 /*
  * JSON API Endpoints
  */
@@ -70,6 +70,11 @@ app.get('/api', function api_index (req, res){
     endpoints: [
       {method: "GET", path: "/api", description: "Describes available endpoints"}
     ]
+  });
+});
+app.get('/api/albums', function albumsIndex(req, res) {
+  db.Album.find({}, function(err, albums) {
+    res.json(albums);
   });
 });
 
