@@ -38,9 +38,13 @@ sampleAlbums.push({
 
 
 $(document).ready(function() {
-  sampleAlbums.forEach((anAlbum) => {
-    renderAlbum(anAlbum);    
-  })
+  console.log('app.js loaded!');
+  $.get('/api/albums').success(function (albums) {
+    albums.forEach(function(album) {
+      renderAlbum(album);
+    });
+
+  });
 });
 
 
@@ -84,9 +88,11 @@ function renderAlbum(album) {
   "              </div>" +
   "            </div>" +
   "          </div>" +
-  // "        </div>" +  
+  // "        </div>" +
   "        <!-- end one album -->";
 
   // render to the page with jQuery
-  $('.album').append(albumHtml);
+  //$('.album').append(albumHtml);
+
+  $('#albums').prepend(albumHtml);
 }
