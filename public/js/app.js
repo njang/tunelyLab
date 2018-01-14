@@ -45,6 +45,7 @@ $(document).ready(function() {
     });
 
   });
+
 });
 
 
@@ -88,11 +89,12 @@ function renderAlbum(album) {
   "              </div>" +
   "            </div>" +
   "          </div>" +
-  // "        </div>" +
+  // "        </div>" +  
   "        <!-- end one album -->";
 
   // render to the page with jQuery
   //$('.album').append(albumHtml);
 
   $('#albums').prepend(albumHtml);
+
 }
