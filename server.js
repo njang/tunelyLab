@@ -14,12 +14,7 @@ app.use(express.static(__dirname + '/public'));
 /************
  * DATABASE *
  ************/
-
- var db = require('./models');
-
-/* hard-coded data */
-
-
+var db = require('./models');
 
 /**********
  * ROUTES *
@@ -31,6 +26,12 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', function homepage (req, res) {
   res.sendFile(__dirname + '/views/index.html');
+});
+
+app.get('/api/albums', function albumsIndex(req, res) {
+  db.Album.find({}, function(err, albums) {
+    res.json(albums);
+  });
 });
 
 

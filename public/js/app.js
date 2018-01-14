@@ -57,7 +57,7 @@ function renderAlbum(album) {
   console.log('rendering album:', album);
   let albumHtml =
   "        <!-- one album -->" +
-  // "        <div class='row album' data-album-id='" + "HARDCODED ALBUM ID" + "'>" +
+  "        <div class='row album' data-album-id='" + "HARDCODED ALBUM ID" + "'>" +
   "          <div class='col-md-10 col-md-offset-1'>" +
   "            <div class='panel panel-default'>" +
   "              <div class='panel-body'>" +
@@ -89,12 +89,9 @@ function renderAlbum(album) {
   "              </div>" +
   "            </div>" +
   "          </div>" +
-  // "        </div>" +  
+  "        </div>" +  
   "        <!-- end one album -->";
 
   // render to the page with jQuery
-  //$('.album').append(albumHtml);
-
-  $('#albums').prepend(albumHtml);
-
+  $('#albums').append(albumHtml);
 }
