@@ -1,33 +1,36 @@
 // This file allows us to seed our application with data
 // simply run: `node seed.js` from the root of this project folder.
 
+//require ./models S1S5 TC
 var db = require("./models");
 
-var albumsList =[];
-albumsList.push({
+var albumList =[];
+//hard-coded model data S1S4 TC
+albumList.push({
               artistName: 'Nine Inch Nails',
               name: 'The Downward Spiral',
               releaseDate: '1994, March 8',
               genres: [ 'industrial', 'industrial metal' ]
             });
-albumsList.push({
+albumList.push({
               artistName: 'Metallica',
               name: 'Metallica',
               releaseDate: '1991, August 12',
               genres: [ 'heavy metal' ]
             });
-albumsList.push({
+albumList.push({
               artistName: 'The Prodigy',
               name: 'Music for the Jilted Generation',
               releaseDate: '1994, July 4',
               genres: [ 'electronica', 'breakbeat hardcore', 'rave', 'jungle' ]
             });
-albumsList.push({
+albumList.push({
               artistName: 'Johnny Cash',
               name: 'Unchained',
               releaseDate: '1996, November 5',
               genres: [ 'country', 'rock' ]
             });
+
 
 db.Album.remove({}, function(err, albums){
 

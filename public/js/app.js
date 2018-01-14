@@ -36,7 +36,8 @@ sampleAlbums.push({
 
 
 
-
+//use ajax $.get to get /api/albums S1S2 TC
+// on success render each album for albums S1S1
 $(document).ready(function() {
   console.log('app.js loaded!');
   $.get('/api/albums').success(function (albums) {
@@ -45,23 +46,21 @@ $(document).ready(function() {
     });
 
   });
-
 });
-
-
 
 
 
 // this function takes a single album and renders it to the page
 function renderAlbum(album) {
   console.log('rendering album:', album);
-  let albumHtml =
+
+  var albumHtml =
   "        <!-- one album -->" +
   "        <div class='row album' data-album-id='" + "HARDCODED ALBUM ID" + "'>" +
   "          <div class='col-md-10 col-md-offset-1'>" +
   "            <div class='panel panel-default'>" +
   "              <div class='panel-body'>" +
-  "                <!-- begin album internal row -->" +
+  "              <!-- begin album internal row -->" +
   "                <div class='row'>" +
   "                  <div class='col-md-3 col-xs-12 thumbnail album-art'>" +
   "                     <img src='" + "http://placehold.it/400x400'" +  " alt='album image'>" +
@@ -78,20 +77,20 @@ function renderAlbum(album) {
   "                      </li>" +
   "                      <li class='list-group-item'>" +
   "                        <h4 class='inline-header'>Released date:</h4>" +
-  "                        <span class='album-releaseDate'>" + album.releaseDate + "</span>" +
+  "                        <span class='album-name'>" + album.releaseDate + "</span>" +
   "                      </li>" +
   "                    </ul>" +
   "                  </div>" +
   "                </div>" +
   "                <!-- end of album internal row -->" +
+
   "              </div>" + // end of panel-body
+
   "              <div class='panel-footer'>" +
   "              </div>" +
+
   "            </div>" +
   "          </div>" +
   "        </div>" +  
   "        <!-- end one album -->";
-
-  // render to the page with jQuery
-  $('#albums').append(albumHtml);
 }
