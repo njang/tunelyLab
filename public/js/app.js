@@ -91,7 +91,6 @@ function renderAlbum(album) {
 
   "            </div>" +
   "          </div>" +
-  "          <!-- end one album -->";
-
-  $('#albums').prepend(albumHtml);
- }
+  "        </div>" +  
+  "        <!-- end one album -->";
+}
