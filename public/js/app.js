@@ -38,9 +38,14 @@ sampleAlbums.push({
 
 
 $(document).ready(function() {
-  sampleAlbums.forEach((anAlbum) => {
-    renderAlbum(anAlbum);    
-  })
+  console.log('app.js loaded!');
+  $.get('/api/albums').success(function (albums) {
+    albums.forEach(function(album) {
+      renderAlbum(album);
+    });
+
+  });
+
 });
 
 
