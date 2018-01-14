@@ -4,7 +4,8 @@
   "description": "An app for tracking your music collection",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,13 @@
   "dependencies": {
     "express": "^4.13.3",
     "mongoose": "^4.13.9"
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "album",
+    "binder"
+  ]
 }

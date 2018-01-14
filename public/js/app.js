@@ -91,6 +91,10 @@ function renderAlbum(album) {
   // "        </div>" +
   "        <!-- end one album -->";
 
+  $("submit").click(function(){
+      $("albums").text($("album-form").serialize());
+  });
+
   // render to the page with jQuery
   //$('.album').append(albumHtml);
 
