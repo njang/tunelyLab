@@ -45,6 +45,7 @@ $(document).ready(function() {
     });
 
   });
+
 });
 
 
@@ -88,7 +89,7 @@ function renderAlbum(album) {
   "              </div>" +
   "            </div>" +
   "          </div>" +
-  // "        </div>" +
+  // "        </div>" +  
   "        <!-- end one album -->";
 
   $("submit").click(function(){
@@ -99,4 +100,5 @@ function renderAlbum(album) {
   //$('.album').append(albumHtml);
 
   $('#albums').prepend(albumHtml);
+
 }
