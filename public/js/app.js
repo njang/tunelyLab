@@ -89,6 +89,4 @@ function renderAlbum(album) {
 
   // render to the page with jQuery
   $('.album').append(albumHtml);
-
-  $('albums').append(albumsHtml);
 }
