@@ -6,8 +6,9 @@
  */
 
 /* document ready */
-//use ajax $.get to get /api/albums from serverS1S2 TC
-// on success render each album for all albums S1S1
+//use ajax to get the albums. Render them on the page. S1S2 TC
+//use ajax $.get to get /api/albums from server
+// on success render each album for all albums 
 $(document).ready(function() {
   console.log('app.js loaded!');
   $.get('/api/albums').success(function (albums) {
@@ -67,7 +68,7 @@ $(document).ready(function() {
 
 
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function handleUpdateSong(e) {
   e.preventDefault();
   // get the values from the item on the modal
@@ -155,8 +156,10 @@ function updateSongsList(albumId) {
 function getAlbumRowById(id) {
   return $('[data-album-id=' + id + ']');
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// handleEditAlbumClick function S5S1 TC
+//Use jQuery to react to clicks on these buttons and determine the correct Album._id. console.log it S5S1 TC
+// handleEditAlbumClick function
   // get current album's album-id data and store in albumId variable
   // call getAlbumRowById with albumId as argument, store returned row in $albumRow variable
 function handleEditAlbumClick(e) {
@@ -165,14 +168,14 @@ function handleEditAlbumClick(e) {
   // log 'attempt to edit id' and albumId
   console.log('attempt to edit id', albumId);
 
-  //replace edit button with save button
-  //find and hide edit button by class for current album S5S1 TC
+//Replace the Edit button with a Save Changes button when clicked S5S1 TC
+  //find and hide edit button by class for current album
   //find and show save changes button by class for current album
   $(this).parent().find('.btn').hide();
   $(this).parent().find('.default-hidden').show();
 
-  // replace current spans with inputs
-  // find albumRow's album-name span's text and store in albumName variable S5S1 TC
+//Also replace the major fields on the Album with input elements S5S1 TC
+  // find albumRow's album-name span's text and store in albumName variable
   // set album-name span's html to be input with class of edit-album-name and value of albumName
   var albumName = $albumRow.find('span.album-name').text();
   $albumRow.find('span.album-name').html('<input class="edit-album-name" value="' + albumName + '"></input>');
@@ -185,7 +188,8 @@ function handleEditAlbumClick(e) {
   var releaseDate = $albumRow.find('span.album-release-date').text();
   $albumRow.find('span.album-release-date').html('<input class="edit-album-release-date" value="' + releaseDate + '"></input>');
 }
-// handleSaveChangesClick function S5S2 TC
+//When Save Changes is clicked, react to it S5S2 TC
+// handleSaveChangesClick function
   // get current album's album-id data and store in albumId variable
   // call getAlbumRowById with albumId as argument, store returned row in $albumRow variable
 function handleSaveChangesClick(e) {
@@ -200,7 +204,8 @@ function handleSaveChangesClick(e) {
     artistName: $albumRow.find('.edit-artist-name').val(),
     releaseDate: $albumRow.find('.edit-album-release-date').val()
   };
-  //use $.ajax to send a S5S2 TC
+//Prepare an AJAX call to the server at PUT /api/albums/:id S5S2 TC
+  //use $.ajax to send a
     //PUT request to /api/albums/:album_id
     // on success call function
       // log data
@@ -342,7 +347,7 @@ function generateAlbumHtml(album) {
   "              <div class='panel-footer'>" +
                   // button to add song S3S4 TC
   "                <button class='btn btn-primary add-song'>Add Song</button>" +
-                  // button to edit album S5S1 TC
+                  // Add a new button to each panel-footer S5S1 TC
   "                <button class='btn btn-info edit-album'>Edit Album</button>" +
   "                <button class='btn btn-info edit-songs'>Edit Songs</button>" +
                   // button to delete album S4S1 TC
@@ -355,8 +360,9 @@ function generateAlbumHtml(album) {
   "          <!-- end one album -->";
   return albumHtml;
  }
-
+/////////////////////////////////////////////////////////////////////////////////////
 // this function takes a single album and renders it to the page
+//edit the function renderAlbum to display one Album on the page. S1S1
 function renderAlbum(album) {
   var html = generateAlbumHtml(album);
   console.log('rendering album:', album);

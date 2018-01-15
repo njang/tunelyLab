@@ -62,7 +62,7 @@ albumList.forEach(function(album) {
   album.songs = sampleSongs;
 });
 
-
+/////////////////////////////////////////////////////////////////////////////
 db.Album.remove({}, function(err, albums){
 
   db.Album.create(albumList, function(err, albums){
@@ -73,3 +73,4 @@ db.Album.remove({}, function(err, albums){
   });
 
 });
+//////////////////////////////////////////////////////////////////////////////

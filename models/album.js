@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 //require song model S3S1 TC
 var Song = require('./song');
 
-//create new schema, AlbumSchema S1S3 TC
+//add a model for our albums. You should be able to determine the datatypes based on the sample data in the server S1S3 TC
+//create new schema, AlbumSchema
   //keys used to define properties and their schema types
   // songs key's value is a songs array that uses Song model's schema S3S1 TC
 var AlbumSchema = new Schema({

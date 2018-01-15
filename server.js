@@ -26,7 +26,7 @@ var db = require('./models');
 /*
  * HTML Endpoints
  */
-//request / enpoint from server using get, on success execute homepage function TC
+//request / enpoint from client using get, on success execute homepage function TC
   // respond to client by sending '/views/index.html' file
 app.get('/', function homepage (req, res) {
   res.sendFile(__dirname + '/views/index.html');
@@ -37,7 +37,7 @@ app.get('/', function homepage (req, res) {
  * JSON API Endpoints
  */
 
-// request /api endpoint from server using get, on success execute api_index function TC
+// request /api endpoint from client using get, on success execute api_index function TC
 app.get('/api', function api_index (req, res){
   res.json({
     message: "Welcome to tunely!",
@@ -48,8 +48,8 @@ app.get('/api', function api_index (req, res){
     ]
   });
 });
-
-// request /api/albums endpoint from server using get, on success execute albumsIndex function S1S2 TC
+//create a new route for /api/albums S1S2 TC
+// request /api/albums endpoint from client using get, on success execute albumsIndex function
   // find and respond with all albums in Album db S1S5 TC
     // since API route send JSON S1S2 TC
 app.get('/api/albums', function albumsIndex(req, res) {
@@ -81,9 +81,9 @@ app.post('/api/albums', function albumCreate(req, res) {
 
 });
 
-// request /api/albums/:id endpoint from server using get, on success execute albumShow function  TC
+// request /api/albums/:id endpoint from client using get, on success execute albumShow function  TC
   // log requested album's id
-  // find one album from album db using albumid from request, on success call function
+  // find one album from album db using album id from request, on success call function
     // respond with json of album
 app.get('/api/albums/:id', function albumShow(req, res) {
   console.log('requested album id=', req.params.id);
@@ -92,13 +92,15 @@ app.get('/api/albums/:id', function albumShow(req, res) {
   });
 });
 
-// request /api/albums/:id endpoint from server using get, on success execute albumsShow function TC
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// request /api/albums/:id endpoint from client using get, on success execute albumsShow function TC
 app.get('/api/albums/:id/songs', function albumShow(req, res) {
   console.log('requested album id=', req.params.id);
   db.Album.findOne({_id: req.params.id}, function(err, album) {
     res.json(album.songs);
   });
 });
+/////////////////////////////////////////////////////////////./////////////////////////////////////////////////////////////////
 // send /api/albums/:albumId/songs to client, on success run songsCreate function S3S6 TC
   // log body
   // find one album from album db using albumid from request, on success call function
@@ -137,11 +139,24 @@ app.delete('/api/albums/:id', function deleteAlbum(req, res) {
     res.status(200).send();
   });
 });
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Add the app.put method on the server S5S3
+// send request to /api/albums/:id to , on success run updateAlbum function
+  // log 'updating id' of request album's id
+  // log 'received body' of request album's new body object
 app.put('/api/albums/:id', function updateAlbum(req, res) {
   console.log('updating id ', req.params.id);
   console.log('received body ', req.body);
-
+//Connect it to the database S5S3
+  //find one album from album db using album id from request on success run function
+  // if err log err
+  // else set foundAlbum.artistname to be the request album's new body object's artistName
+  // set foundAlbum.name to be the request album's new body object's name
+  // set foundAlbum.releaseDate to be the request album's new body object's releaseDate
+  // save  foundAlbum function
+    // if err log
+    // else
+    //respond to client with json of saved 
   db.Album.findOne({_id: req.params.id}, function(err, foundAlbum) {
     if (err) { console.log('error', err); }
     foundAlbum.artistname = req.body.artistName;
@@ -192,7 +207,7 @@ app.delete('/api/albums/:albumId/songs/:id', function(req, res) {
     });
   });
 });
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 /**********
