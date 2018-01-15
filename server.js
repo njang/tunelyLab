@@ -68,7 +68,10 @@ app.post('/api/albums', function albumCreate(req, res) {
   var genres = req.body.genres.split(',').map(function(item) { return item.trim(); } );
   req.body.genres = genres;
 
-
+//connect app.post route to album db S2S5
+  // create record in album database that has attributes of req.body
+    // logs error if err occurs
+    // respond with new album
   db.Album.create(req.body, function(err, album) {
     if (err) { console.log('error', err); }
     console.log(album);
