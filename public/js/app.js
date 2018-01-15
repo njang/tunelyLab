@@ -35,7 +35,11 @@ $(document).ready(function() {
     $(this).trigger("reset");
   });
 
-
+  // attach click event to albums div that triggers function if on .add-song handle S3S4 TC
+    //  add set id to the album id
+    // log id
+    // set album-id data-attribute on songModal to be id
+    // open song modal by calling .modal
   $('#albums').on('click', '.add-song', function(e) {
     var id= $(this).parents('.album').data('album-id');
     console.log('id',id);
@@ -248,7 +252,7 @@ function handleNewSongSubmit(e) {
   //set songText to include long dash using &ndash
   // for each song in songs array
   //change songText to be songText(long dash with space in front) (song track number) song name long dash
-  // set song Html to be new list element that contains Songs header and uses songText as content 
+  // set song Html to be new list element that contains Songs header and uses songText as content
   // return songsHtml string
 function buildSongsHtml(songs) {
   var songText = "    &ndash; ";
@@ -267,6 +271,7 @@ function buildSongsHtml(songs) {
 function generateAlbumHtml(album) {
   var albumHtml =
   "        <!-- one album -->" +
+            // each album has data-album-id attribute that's value is album._id S3S4
   "        <div class='row album' data-album-id='" + album._id + "'>" +
   "          <div class='col-md-10 col-md-offset-1'>" +
   "            <div class='panel panel-default'>" +
@@ -301,6 +306,7 @@ function generateAlbumHtml(album) {
   "              </div>" + // end of panel-body
 
   "              <div class='panel-footer'>" +
+                  // button to add song S3S4 TC
   "                <button class='btn btn-primary add-song'>Add Song</button>" +
   "                <button class='btn btn-info edit-album'>Edit Album</button>" +
   "                <button class='btn btn-info edit-songs'>Edit Songs</button>" +
