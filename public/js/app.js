@@ -48,9 +48,9 @@ $(document).ready(function() {
   });
   // call handleNewSongSubmit function when saveSong modal button is clicked S3S5 TC
   $('#saveSong').on('click', handleNewSongSubmit);
-
+  // call handleDeleteAlbumClick function when saveSong modal button is clicked S4S2 TC
   $('#albums').on('click', '.delete-album', handleDeleteAlbumClick);
-
+  // call handleEditAlbumClick function when saveSong modal button is clicked S5S1 TC
   $('#albums').on('click', '.edit-album', handleEditAlbumClick);
 
   $('#albums').on('click', '.put-album', handleSaveChangesClick);
@@ -156,23 +156,32 @@ function getAlbumRowById(id) {
   return $('[data-album-id=' + id + ']');
 }
 
+// handleEditAlbumClick function S5S1 TC
+  // get current album's album-id data and store in albumId variable
+  // call getAlbumRowById with albumId as argument, store returned row in $albumRow variable
 function handleEditAlbumClick(e) {
   var albumId = $(this).parents('.album').data('album-id');
   var $albumRow = getAlbumRowById(albumId);
-
+  // log 'attempt to edit id' and albumId
   console.log('attempt to edit id', albumId);
 
-  // replace edit button with save button
+  //replace edit button with save button
+  //find and hide edit button by class for current album S5S1 TC
+  //find and show save changes button by class for current album
   $(this).parent().find('.btn').hide();
   $(this).parent().find('.default-hidden').show();
 
   // replace current spans with inputs
+  // find albumRow's album-name span's text and store in albumName variable S5S1 TC
+  // set album-name span's html to be input with class of edit-album-name and value of albumName
   var albumName = $albumRow.find('span.album-name').text();
   $albumRow.find('span.album-name').html('<input class="edit-album-name" value="' + albumName + '"></input>');
-
+  // find albumRow's artist-name span's text and store in artistName variable
+  // set artist-name span's html to be input with class of edit-artist-name and value of artistName
   var artistName = $albumRow.find('span.artist-name').text();
   $albumRow.find('span.artist-name').html('<input class="edit-artist-name" value="' + artistName + '"></input>');
-
+  // find albumRow's release-date span's text and store in releaseDate variable
+  // set album-release-date span's html to be input with class of edit-album-release-date and value of releaseDate
   var releaseDate = $albumRow.find('span.album-release-date').text();
   $albumRow.find('span.album-release-date').html('<input class="edit-album-release-date" value="' + releaseDate + '"></input>');
 }
@@ -324,6 +333,7 @@ function generateAlbumHtml(album) {
   "              <div class='panel-footer'>" +
                   // button to add song S3S4 TC
   "                <button class='btn btn-primary add-song'>Add Song</button>" +
+                  // button to edit album S5S1 TC
   "                <button class='btn btn-info edit-album'>Edit Album</button>" +
   "                <button class='btn btn-info edit-songs'>Edit Songs</button>" +
                   // button to delete album S4S1 TC
