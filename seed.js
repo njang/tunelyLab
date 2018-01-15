@@ -9,7 +9,7 @@ var albumList =[];
 albumList.push({
               artistName: 'Nine Inch Nails',
               name: 'The Downward Spiral',
-              releaseDate: '1994, March 8',
+              releaseDate: '1994, spMarch 8',
               genres: [ 'industrial', 'industrial metal' ]
             });
 albumList.push({
@@ -30,7 +30,7 @@ albumList.push({
               releaseDate: '1996, November 5',
               genres: [ 'country', 'rock' ]
             });
-
+//sameple songs S3S2 TC
 var sampleSongs = [];
 
 sampleSongs.push({ name: 'Swamped',
@@ -57,6 +57,7 @@ sampleSongs.push({ name: 'Tight Rope',
 
 
 // populate each albums song list
+// for each album in albumList set album.songs to be sampleSongs for that album S3S2 TC
 albumList.forEach(function(album) {
   album.songs = sampleSongs;
 });
