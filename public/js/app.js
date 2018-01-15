@@ -185,17 +185,26 @@ function handleEditAlbumClick(e) {
   var releaseDate = $albumRow.find('span.album-release-date').text();
   $albumRow.find('span.album-release-date').html('<input class="edit-album-release-date" value="' + releaseDate + '"></input>');
 }
-
+// handleSaveChangesClick function S5S2 TC
+  // get current album's album-id data and store in albumId variable
+  // call getAlbumRowById with albumId as argument, store returned row in $albumRow variable
 function handleSaveChangesClick(e) {
   var albumId = $(this).parents('.album').data('album-id');
   var $albumRow = getAlbumRowById(albumId);
-
+  // data object
+    // find and get edit-album-name value of albumName and make value of name key
+    // find and get edit-artist-name value of artistName and make value of artistName key
+    // find and get edit-album-release-date value of releaseDate and make value of releaseDate key
   var data = {
     name: $albumRow.find('.edit-album-name').val(),
     artistName: $albumRow.find('.edit-artist-name').val(),
     releaseDate: $albumRow.find('.edit-album-release-date').val()
   };
-
+  //use $.ajax to send a S5S2 TC
+    //PUT request to /api/albums/:album_id
+    // on success call function
+      // log data
+      //replace albumRow with data after passing into generateAlbumHtml as an argument
   $.ajax({
     method: 'PUT',
     url: '/api/albums/' + albumId,
