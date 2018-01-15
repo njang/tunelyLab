@@ -6,7 +6,7 @@
  */
 
 /* document ready */
-//use ajax $.get to get /api/albums S1S2 TC
+//use ajax $.get to get /api/albums from serverS1S2 TC
 // on success render each album for all albums S1S1
 $(document).ready(function() {
   console.log('app.js loaded!');
@@ -238,12 +238,12 @@ function handleNewSongSubmit(e) {
   $.post(postUrl, formData)
     .success(function(song) {
       console.log('song', song);
-
-      // re-get full album and render on page
+      // re-get full album and render on page S3S7
+      //use ajax $.get to request /api/albums/:album_id from server
       $.get('/api/albums/' + albumId).success(function(album) {
-        //remove old entry
+        //on success remove old copy
         $('[data-album-id='+ albumId + ']').remove();
-        // render a replacement
+        //on success render a replacement
         renderAlbum(album);
       });
 

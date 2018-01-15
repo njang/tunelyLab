@@ -81,7 +81,10 @@ app.post('/api/albums', function albumCreate(req, res) {
 
 });
 
-// request /api/albums/:id endpoint from server using get, on success execute albumsShow function TC
+// request /api/albums/:id endpoint from server using get, on success execute albumShow function  TC
+  // log requested album's id
+  // find one album from album db using albumid from request, on success call function
+    // respond with json of album
 app.get('/api/albums/:id', function albumShow(req, res) {
   console.log('requested album id=', req.params.id);
   db.Album.findOne({_id: req.params.id}, function(err, album) {
@@ -96,7 +99,7 @@ app.get('/api/albums/:id/songs', function albumShow(req, res) {
     res.json(album.songs);
   });
 });
-// send /api/albums/:albumId/songs to client, on success run songsCreate function
+// send /api/albums/:albumId/songs to client, on success run songsCreate function S3S6 TC
   // log body
   // find one album from album db using albumid from request, on success call function
   // if err log error
@@ -109,7 +112,7 @@ app.post('/api/albums/:albumId/songs', function songsCreate(req, res) {
     // save album
       // if err log
       // else log saved album
-      // respond to client with song as json 
+      // respond to client with song as json
     var song = new db.Song(req.body);
     album.songs.push(song);
     album.save(function(err, savedAlbum) {
