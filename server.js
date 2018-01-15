@@ -58,7 +58,7 @@ app.get('/api/albums', function albumsIndex(req, res) {
   });
 });
 
-// send /api/albums to server using post, on success execute albumsCreate function S2S3 TC
+// send /api/albums to client using post, on success execute albumsCreate function S2S3 TC
 //log and object containing parsed text from /api/albums body
 app.post('/api/albums', function albumCreate(req, res) {
   console.log('body', req.body);
@@ -96,12 +96,20 @@ app.get('/api/albums/:id/songs', function albumShow(req, res) {
     res.json(album.songs);
   });
 });
-
+// send /api/albums/:albumId/songs to client, on success run songsCreate function
+  // log body
+  // find one album from album db using albumid from request, on success call function
+  // if err log error
 app.post('/api/albums/:albumId/songs', function songsCreate(req, res) {
   console.log('body', req.body);
   db.Album.findOne({_id: req.params.albumId}, function(err, album) {
     if (err) { console.log('error', err); }
-
+    //create new db song and store in song variable
+    // add new song to album by pushing song to album.songs
+    // save album
+      // if err log
+      // else log saved album
+      // respond to client with song as json 
     var song = new db.Song(req.body);
     album.songs.push(song);
     album.save(function(err, savedAlbum) {
