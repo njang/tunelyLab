@@ -6,7 +6,7 @@
  */
 
 /* document ready */
-//use ajax $.get to get /api/albums S1S2 TC 
+//use ajax $.get to get /api/albums S1S2 TC
 // on success render each album for albums S1S1
 $(document).ready(function() {
   console.log('app.js loaded!');
@@ -20,8 +20,8 @@ $(document).ready(function() {
   //triggers function that prevents default, send content of the form to the server right away
   // serialize album form values and store in formData variable
   //console.log form data
-  // ajax $.post to /api/albums triggers function that 
-    // logs album 
+  // ajax $.post to /api/albums triggers function that S2S4
+    // logs album
     //render the server's response
   // then reset
   $('#album-form form').on('submit', function(e) {
@@ -30,7 +30,7 @@ $(document).ready(function() {
     console.log('formData', formData);
     $.post('/api/albums', formData, function(album) {
       console.log('album after POST', album);
-      renderAlbum(album);  
+      renderAlbum(album);
     });
     $(this).trigger("reset");
   });

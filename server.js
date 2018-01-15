@@ -63,7 +63,8 @@ app.get('/api/albums', function albumsIndex(req, res) {
 app.post('/api/albums', function albumCreate(req, res) {
   console.log('body', req.body);
 
-  // split at comma and remove and trailing space
+  // split the data in req.body.genres field at comma, map into new genres array, and remove trailing space using .trim S2S4
+  // set /api/albums body data to genres array
   var genres = req.body.genres.split(',').map(function(item) { return item.trim(); } );
   req.body.genres = genres;
 
