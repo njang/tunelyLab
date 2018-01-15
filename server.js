@@ -5,6 +5,7 @@ var express = require('express');
 // generate a new express app and call it 'app'
 var app = express();
 var mongoose = require('mongoose');
+// add body parser S2S3
 var bodyParser = require('body-parser');
 
 // serve static files from public folder
@@ -57,7 +58,8 @@ app.get('/api/albums', function albumsIndex(req, res) {
   });
 });
 
-// send /api/albums to server using post, on success execute albumsCreate function TC
+// send /api/albums to server using post, on success execute albumsCreate function S2S3 TC
+//log and object containing parsed text from /api/albums body
 app.post('/api/albums', function albumCreate(req, res) {
   console.log('body', req.body);
 
