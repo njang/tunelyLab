@@ -244,7 +244,12 @@ function handleNewSongSubmit(e) {
 }
 
 
-
+// build Songs Html function, songs parameter S3S3 TC
+  //set songText to include long dash using &ndash
+  // for each song in songs array
+  //change songText to be songText(long dash with space in front) (song track number) song name long dash
+  // set song Html to be new list element that contains Songs header and uses songText as content 
+  // return songsHtml string
 function buildSongsHtml(songs) {
   var songText = "    &ndash; ";
   songs.forEach(function(song) {
@@ -285,7 +290,7 @@ function generateAlbumHtml(album) {
   "                        <h4 class='inline-header'>Released date:</h4>" +
   "                        <span class='album-release-date'>" + album.releaseDate + "</span>" +
   "                      </li>" +
-
+//call buildSongsHtml with album songs as argument S3S3 TC
   buildSongsHtml(album.songs) +
 
   "                    </ul>" +
