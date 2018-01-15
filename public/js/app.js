@@ -7,7 +7,7 @@
 
 /* document ready */
 //use ajax $.get to get /api/albums S1S2 TC
-// on success render each album for albums S1S1
+// on success render each album for all albums S1S1
 $(document).ready(function() {
   console.log('app.js loaded!');
   $.get('/api/albums').success(function (albums) {
@@ -21,8 +21,8 @@ $(document).ready(function() {
   // serialize album form values and store in formData variable
   //console.log form data
   // ajax $.post to /api/albums triggers function that S2S4
-    // logs album
-    //render the server's response
+    // logs album after post
+    //render new album
   // then reset
   $('#album-form form').on('submit', function(e) {
     e.preventDefault();

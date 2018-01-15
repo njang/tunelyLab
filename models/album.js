@@ -1,12 +1,12 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-//require song model
+//require song model S3S1 TC
 var Song = require('./song');
 
 //create new schema, AlbumSchema S1S3 TC
   //keys used to define properties and their schema types
-  // songs key's value is Song model's schema 
+  // songs key's value is a songs array that uses Song model's schema S3S1 TC
 var AlbumSchema = new Schema({
   artistName: String,
   name: String,
