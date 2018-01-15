@@ -20,7 +20,7 @@ $(document).ready(function() {
   //triggers function that prevents default, send content of the form to the server right away
   // serialize album form values and store in formData variable
   //console.log form data
-  // ajax $.post to /api/albums triggers function that S2S4
+  // use ajax $.post to send request to /api/albums, send formData with request, if request succeeds triggers function that S2S4
     // logs album after post
     //render new album
   // then reset
@@ -46,7 +46,7 @@ $(document).ready(function() {
     $('#songModal').data('album-id', id);
     $('#songModal').modal();
   });
-
+  // call handleNewSongSubmit function when saveSong modal button is clicked S3S5 TC
   $('#saveSong').on('click', handleNewSongSubmit);
 
   $('#albums').on('click', '.delete-album', handleDeleteAlbumClick);
@@ -214,19 +214,27 @@ function handleDeleteAlbumClick(e) {
 }
 
 // handles the modal fields and POSTing the form to the server
+// handleNewSongSubmit function S3S5 TC
+  // get song modal's album-id data and store in albumId variable
+  // get value from songName input field and store in songName variable
+  //get value from trackNumber input field and store in trackNumber variable
 function handleNewSongSubmit(e) {
   var albumId = $('#songModal').data('album-id');
   var songName = $('#songName').val();
   var trackNumber = $('#trackNumber').val();
-
+  //formData object containing S3S5 TC
+    // songName input data
+    // trackNumber input data
   var formData = {
     name: songName,
     trackNumber: trackNumber
   };
-
+  // build url /api/albums/:album_id/songs and save as postUrl variable S3S5 TC
   var postUrl = '/api/albums/' + albumId + '/songs';
   console.log('posting to ', postUrl, ' with data ', formData);
-
+  //use ajax $.post to send request to postUrl, send formData with request S3S5 TC
+    // if succesfull call function to
+      // log song
   $.post(postUrl, formData)
     .success(function(song) {
       console.log('song', song);
