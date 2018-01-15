@@ -199,7 +199,15 @@ function handleSaveChangesClick(e) {
 }
 
 
-
+// handleDeleteAlbumClick function S4S1 TC
+  // get current album's album-id data and store in albumId variable
+  // log someone wants to delete album  and albumId
+  // get value from songName input field and store in songName variable
+  //use $.ajax to send a S4S3 TC
+    //DELETE request to /api/albums/:album_id
+    // on success call function
+      // log that album has been deleted
+      // select album using using data-album-id and albumId and remove
 function handleDeleteAlbumClick(e) {
   var albumId = $(this).parents('.album').data('album-id');
   console.log('someone wants to delete album id=' + albumId );
@@ -318,6 +326,7 @@ function generateAlbumHtml(album) {
   "                <button class='btn btn-primary add-song'>Add Song</button>" +
   "                <button class='btn btn-info edit-album'>Edit Album</button>" +
   "                <button class='btn btn-info edit-songs'>Edit Songs</button>" +
+                  // button to delete album S4S1 TC
   "                <button class='btn btn-danger delete-album'>Delete Album</button>" +
   "                <button class='btn btn-success put-album default-hidden'>Save Changes</button>" +
   "              </div>" +
