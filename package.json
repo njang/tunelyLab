@@ -21,6 +21,6 @@
     "mongo": "^0.1.0",
     "mongoose": "^4.13.9",
     "nodemon": "^1.14.11",
-    "body-parser": "^1.14.1",
+    "body-parser": "^1.14.1"
   }
 }
