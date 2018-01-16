@@ -18,7 +18,7 @@ h2 {
   -webkit-text-stroke-color: #ffffff;
 }
 .panel-body {
-  background-color: null;
+  background-color: #000000;
   margin: 0 auto;
   border: 0px;
   border-color: black;
@@ -29,6 +29,7 @@ h2 {
 }
 .list-group {
   border: 0px;
+  background-color: #000000;
 }
 .panel-footer {
   padding: 0;
