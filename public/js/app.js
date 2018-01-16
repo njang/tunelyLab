@@ -8,7 +8,7 @@
 /* document ready */
 //use ajax to get the albums. Render them on the page. S1S2 TC
 //use ajax $.get to get /api/albums from server
-// on success render each album for all albums 
+// on success render each album for all albums
 $(document).ready(function() {
   console.log('app.js loaded!');
   $.get('/api/albums').success(function (albums) {
@@ -95,6 +95,7 @@ function handleEditSongsClick(e) {
   $.get('/api/albums/' + albumId + '/songs').success(function(songs) {
     var formHtml = generateEditSongsModalHtml(songs, albumId);
     $('#editSongsModalBody').html(formHtml);
+    // When 'Edit Songs' is clicked open the modal S6S1 TC
     $('#editSongsModal').modal('show');
   });
 }
@@ -345,12 +346,13 @@ function generateAlbumHtml(album) {
   "              </div>" + // end of panel-body
 
   "              <div class='panel-footer'>" +
-                  // button to add song S3S4 TC
+                  // Add a new button in panel-footer to add song S3S4 TC
   "                <button class='btn btn-primary add-song'>Add Song</button>" +
-                  // Add a new button to each panel-footer S5S1 TC
+                  // Add a new button in panel-footer to edit album S5S1 TC
   "                <button class='btn btn-info edit-album'>Edit Album</button>" +
+                  // Add a new button to each panel-footer S6S1 TC
   "                <button class='btn btn-info edit-songs'>Edit Songs</button>" +
-                  // button to delete album S4S1 TC
+                  // Add a new button in panel-footer to delete album S4S1 TC
   "                <button class='btn btn-danger delete-album'>Delete Album</button>" +
   "                <button class='btn btn-success put-album default-hidden'>Save Changes</button>" +
   "              </div>" +
