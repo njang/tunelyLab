@@ -1,9 +1,11 @@
 // This file allows us to seed our application with data
 // simply run: `node seed.js` from the root of this project folder.
 
+//require ./models S1S5 TC
 var db = require("./models");
 
 var albumList =[];
+//hard-coded model data S1S4 TC
 albumList.push({
               artistName: 'Nine Inch Nails',
               name: 'The Downward Spiral',
@@ -29,8 +31,39 @@ albumList.push({
               releaseDate: '1996, November 5',
               genres: [ 'country', 'rock' ]
             });
+//sameple songs S3S2 TC
+var sampleSongs = [];
+
+sampleSongs.push({ name: 'Swamped',
+                   trackNumber: 1
+});
+sampleSongs.push({ name: "Heaven's a Lie",
+                   trackNumber: 2
+});
+sampleSongs.push({ name: 'Daylight Dancer',
+                   trackNumber: 3
+});
+sampleSongs.push({ name: 'Humane',
+                   trackNumber: 4
+});
+sampleSongs.push({ name: 'Self Deception',
+                   trackNumber: 5
+});
+sampleSongs.push({ name: 'Aeon',
+                   trackNumber: 6
+});
+sampleSongs.push({ name: 'Tight Rope',
+                   trackNumber: 7
+});
 
 
+// populate each albums song list
+// for each album in albumList set album.songs to be sampleSongs for that album S3S2 TC
+albumList.forEach(function(album) {
+  album.songs = sampleSongs;
+});
+
+/////////////////////////////////////////////////////////////////////////////
 db.Album.remove({}, function(err, albums){
 
   db.Album.create(albumList, function(err, albums){
@@ -39,5 +72,5 @@ db.Album.remove({}, function(err, albums){
     console.log("created", albums.length, "albums");
     process.exit();
   });
-
 });
+//////////////////////////////////////////////////////////////////////////////

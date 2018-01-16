@@ -39,5 +39,6 @@ h2 {
   background-color: #820396;
 }
 
-
+.default-hidden {
+display: none;
 }
