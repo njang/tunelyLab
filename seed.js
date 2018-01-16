@@ -30,6 +30,7 @@ albumList.push({
               releaseDate: '1996, November 5',
               genres: [ 'country', 'rock' ]
             });
+
 //sameple songs S3S2 TC
 var sampleSongs = [];
 
@@ -62,7 +63,7 @@ albumList.forEach(function(album) {
   album.songs = sampleSongs;
 });
 
-/////////////////////////////////////////////////////////////////////////////
+
 db.Album.remove({}, function(err, albums){
 
   db.Album.create(albumList, function(err, albums){
@@ -72,4 +73,3 @@ db.Album.remove({}, function(err, albums){
     process.exit();
   });
 });
-//////////////////////////////////////////////////////////////////////////////
