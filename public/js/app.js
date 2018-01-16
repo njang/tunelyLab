@@ -49,7 +49,9 @@ $(document).ready(function() {
   // call handleEditAlbumClick function when edit-album modal button is clicked S5S1 TC
   $('#albums').on('click', '.edit-album', handleEditAlbumClick);
   // call handleEditSongsClick function when save changes modal button is clicked S6 TC
+/*************************************************************************************/
   $('#albums').on('click', '.put-album', handleSaveChangesClick);
+/*************************************************************************************/
   // call handleEditSongsClick function when edit-songs modal button is clicked S6 TC
   $('#albums').on('click', '.edit-songs', handleEditSongsClick);
   // call handleEditSongsClick function when delete-song modal button is clicked S6 TC
@@ -213,7 +215,7 @@ function handleEditAlbumClick(e) {
   var releaseDate = $albumRow.find('span.album-release-date').text();
   $albumRow.find('span.album-release-date').html('<input class="edit-album-release-date" value="' + releaseDate + '"></input>');
 }
-
+/*************************************************************************************/
 //When Save Changes is clicked, react to it S5S2 TC
 // handleSaveChangesClick function
   // get current album's album-id data and store in albumId variable
@@ -246,7 +248,7 @@ function handleSaveChangesClick(e) {
     }
   });
 }
-
+/*************************************************************************************/
 
 // handleDeleteAlbumClick function S4S1 TC
   // get current album's album-id data and store in albumId variable
