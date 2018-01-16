@@ -7,7 +7,7 @@
 
 /* document ready */
 //use ajax to get the albums. Render them on the page. S1S2 TC
-//use ajax $.get to get /api/albums from server
+//use ajax $.get to get all albums from server
 // on success render each album for all albums
 $(document).ready(function() {
   console.log('app.js loaded!');
@@ -49,15 +49,15 @@ $(document).ready(function() {
   });
   // call handleNewSongSubmit function when saveSong modal button is clicked S3S5 TC
   $('#saveSong').on('click', handleNewSongSubmit);
-  // call handleDeleteAlbumClick function when saveSong modal button is clicked S4S2 TC
+  // call handleDeleteAlbumClick function when delete-album modal button is clicked S4S2 TC
   $('#albums').on('click', '.delete-album', handleDeleteAlbumClick);
-  // call handleEditAlbumClick function when saveSong modal button is clicked S5S1 TC
+  // call handleEditAlbumClick function when edit-album modal button is clicked S5S1 TC
   $('#albums').on('click', '.edit-album', handleEditAlbumClick);
-
+  // call handleEditSongsClick function when save changes modal button is clicked S6 TC
   $('#albums').on('click', '.put-album', handleSaveChangesClick);
-
+  // call handleEditSongsClick function when edit-songs modal button is clicked S6 TC
   $('#albums').on('click', '.edit-songs', handleEditSongsClick);
-
+  // call handleEditSongsClick function when delete-song modal button is clicked S6 TC
   $('#editSongsModal').on('click', '.delete-song', handleDeleteSongClick);
 
   $('#editSongsModal').on('submit', 'form', handleUpdateSong);
@@ -69,9 +69,18 @@ $(document).ready(function() {
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//edit each song S6S2
+//  handleUpdateSong function S6S2
+  //triggers function that prevents default, send content of the form to the server right away
+  // get the values from the item on the modal and store in variables
+  // log 'PUT ', url, name, trackNumber
+  //use ajax $.get to sned
+  //PUT request to update current url /api/albums/:album_id/songs/:song_id
+  // add object containing trackNumber and name to request
+  // on success call function that takes data from put request as parameter
+    // update songs by calling updateSongsList function, passing in current albumId as parameter
 function handleUpdateSong(e) {
   e.preventDefault();
-  // get the values from the item on the modal
   var albumId = $(this).attr('id');
   var trackNumber = $(this).find('.song-trackNumber').val();
   var name = $(this).find('.song-name').val();
@@ -88,10 +97,15 @@ function handleUpdateSong(e) {
   });
 }
 
+// handleEditSongsClick function S6S2
+  //triggers function that prevents default, send content of the form to the server right away
+  // get current album's album-id data and store in albumId variable
+  //use ajax $.get to request songs from server
+  //call generateEditSongsModalHtml function and store in formHtml variable
+  //set editSongsModalBody inner html to be songs after edit form is made for them
 function handleEditSongsClick(e) {
   e.preventDefault();
   var albumId = $(this).parents('.album').data('album-id');
-  // let's get the songs for this album
   $.get('/api/albums/' + albumId + '/songs').success(function(songs) {
     var formHtml = generateEditSongsModalHtml(songs, albumId);
     $('#editSongsModalBody').html(formHtml);
@@ -100,8 +114,13 @@ function handleEditSongsClick(e) {
   });
 }
 
-// takes an array of songs and generates an EDIT form for them
+// takes an array of songs and generates an EDIT form for them S6S2 TC
 // we want to have both the albumId and songId available
+// Your form will need to be put into an HTML string S6S2
+//generateEditSongsModalHtml function
+  //create variable html and set value to be empty string
+  //for each song in songs array
+  //Develop a form for editing the song list
 function generateEditSongsModalHtml(songs, albumId) {
   var html = '';
   songs.forEach(function(song) {
@@ -123,7 +142,16 @@ function generateEditSongsModalHtml(songs, albumId) {
 
   return html;
 }
-
+//delete a song S6S2
+//  hhandleDeleteSongClick function 
+  //triggers function that prevents default, send content of the form to the server right away
+  // get the values from the item on the modal and store in variables
+  // log 'PUT ', url, name, trackNumber
+  //use ajax $.get to sned
+  //PUT request to update current url /api/albums/:album_id/songs/:song_id
+  // add object containing trackNumber and name to request
+  // on success call function that takes data from put request as parameter
+    // update songs by calling updateSongsList function, passing in current albumId as parameter
 function handleDeleteSongClick(e) {
   e.preventDefault();
   var songId = $(this).data('song-id');
@@ -141,7 +169,7 @@ function handleDeleteSongClick(e) {
   });
 }
 
-// get the songs again (now that one is onge) and then we'll fix the <li> on the package
+// get the songs again (now that one is gone) and then we'll fix the <li> on the package
 function updateSongsList(albumId) {
   $.get('/api/albums/' + albumId + '/songs').success(function(someAlbums) {
     console.log('replacement albums', someAlbums);
@@ -207,7 +235,7 @@ function handleSaveChangesClick(e) {
   };
 //Prepare an AJAX call to the server at PUT /api/albums/:id S5S2 TC
   //use $.ajax to send a
-    //PUT request to /api/albums/:album_id
+    //PUT request to update /api/albums/:album_id
     // on success call function
       // log data
       //replace albumRow with data after passing into generateAlbumHtml as an argument
@@ -271,7 +299,7 @@ function handleNewSongSubmit(e) {
     .success(function(song) {
       console.log('song', song);
       // re-get full album and render on page S3S7
-      //use ajax $.get to request /api/albums/:album_id from server
+      //use ajax $.get to request specific album by id from server
       $.get('/api/albums/' + albumId).success(function(album) {
         //on success remove old copy
         $('[data-album-id='+ albumId + ']').remove();
