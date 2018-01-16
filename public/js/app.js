@@ -1,9 +1,4 @@
 /* CLIENT-SIDE JS
- *
- * You may edit this file as you see fit.  Try to separate different components
- * into functions and objects as needed.
- *
- */
 
 /* document ready */
 //use ajax to get the albums. Render them on the page. S1S2 TC
@@ -65,10 +60,6 @@ $(document).ready(function() {
 
 /* End document ready */
 
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //edit each song S6S2
 //  handleUpdateSong function S6S2
   //triggers function that prevents default, send content of the form to the server right away
@@ -142,8 +133,9 @@ function generateEditSongsModalHtml(songs, albumId) {
 
   return html;
 }
+
 //delete a song S6S2
-//  hhandleDeleteSongClick function 
+//  handleDeleteSongClick function
   //triggers function that prevents default, send content of the form to the server right away
   // get the values from the item on the modal and store in variables
   // log 'PUT ', url, name, trackNumber
@@ -170,12 +162,17 @@ function handleDeleteSongClick(e) {
 }
 
 // get the songs again (now that one is gone) and then we'll fix the <li> on the package
+//  updateSongsList function
+  //use ajax $.get to request all songs from server
+  //console.log 'replacement albums' some albums
 function updateSongsList(albumId) {
   $.get('/api/albums/' + albumId + '/songs').success(function(someAlbums) {
     console.log('replacement albums', someAlbums);
-    // build a new li
+    // build a new song li
     var replacementLi = buildSongsHtml(someAlbums);
-    // now replace the <li> with the songs on it.
+    // now replace the <li> with the songs on it
+    //get specific album's song list and store in variable $originalLi
+    // replace $originalLi with replacementLi
     var $originalLi = $('[data-album-id=' + albumId + '] .songs-list');
     $($originalLi).replaceWith(replacementLi);
   });
@@ -185,7 +182,6 @@ function updateSongsList(albumId) {
 function getAlbumRowById(id) {
   return $('[data-album-id=' + id + ']');
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Use jQuery to react to clicks on these buttons and determine the correct Album._id. console.log it S5S1 TC
 // handleEditAlbumClick function
@@ -217,6 +213,7 @@ function handleEditAlbumClick(e) {
   var releaseDate = $albumRow.find('span.album-release-date').text();
   $albumRow.find('span.album-release-date').html('<input class="edit-album-release-date" value="' + releaseDate + '"></input>');
 }
+
 //When Save Changes is clicked, react to it S5S2 TC
 // handleSaveChangesClick function
   // get current album's album-id data and store in albumId variable
@@ -390,7 +387,7 @@ function generateAlbumHtml(album) {
   "          <!-- end one album -->";
   return albumHtml;
  }
-/////////////////////////////////////////////////////////////////////////////////////
+
 // this function takes a single album and renders it to the page
 //edit the function renderAlbum to display one Album on the page. S1S1
 function renderAlbum(album) {
