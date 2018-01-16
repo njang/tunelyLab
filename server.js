@@ -26,6 +26,7 @@ var db = require('./models');
 /*
  * HTML Endpoints
  */
+
 //request / enpoint from client using get, on success execute homepage function TC
   // respond to client by sending '/views/index.html' file
 app.get('/', function homepage (req, res) {
@@ -38,6 +39,7 @@ app.get('/', function homepage (req, res) {
  */
 
 // request /api endpoint from client using get, on success execute api_index function TC
+  // that responds to client with json
 app.get('/api', function api_index (req, res){
   res.json({
     message: "Welcome to tunely!",
@@ -48,6 +50,7 @@ app.get('/api', function api_index (req, res){
     ]
   });
 });
+
 //create a new route for /api/albums S1S2 TC
 // request /api/albums endpoint from client using get, on success execute albumsIndex function
   // find and respond with all albums in Album db S1S5 TC
@@ -62,12 +65,10 @@ app.get('/api/albums', function albumsIndex(req, res) {
 //log and object containing parsed text from /api/albums body
 app.post('/api/albums', function albumCreate(req, res) {
   console.log('body', req.body);
-
   // split the data in req.body.genres field at comma, map into new genres array, and remove trailing space using .trim S2S4
   // set /api/albums body data to genres array
   var genres = req.body.genres.split(',').map(function(item) { return item.trim(); } );
   req.body.genres = genres;
-
 //connect app.post route to album db S2S5
   // create record in album database that has attributes of req.body
     // logs error if err occurs
@@ -92,15 +93,18 @@ app.get('/api/albums/:id', function albumShow(req, res) {
   });
 });
 
-// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // request /api/albums/:id endpoint from client using get, on success execute albumsShow function TC
+  // log 'requested album id=' and id of requested album
+  // find one album from album db using albumid from request, on success call function
+  // respond with json of album songs
 app.get('/api/albums/:id/songs', function albumShow(req, res) {
   console.log('requested album id=', req.params.id);
   db.Album.findOne({_id: req.params.id}, function(err, album) {
     res.json(album.songs);
   });
 });
-/////////////////////////////////////////////////////////////./////////////////////////////////////////////////////////////////
+
 // send /api/albums/:albumId/songs to client, on success run songsCreate function S3S6 TC
   // log body
   // find one album from album db using albumid from request, on success call function
@@ -139,9 +143,9 @@ app.delete('/api/albums/:id', function deleteAlbum(req, res) {
     res.status(200).send();
   });
 });
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //Add the app.put method on the server S5S3
-// send request to /api/albums/:id to , on success run updateAlbum function
+// routes HTTP PUT request to /api/albums/:id to , on success run updateAlbum function
   // log 'updating id' of request album's id
   // log 'received body' of request album's new body object
 app.put('/api/albums/:id', function updateAlbum(req, res) {
@@ -155,8 +159,7 @@ app.put('/api/albums/:id', function updateAlbum(req, res) {
   // set foundAlbum.releaseDate to be the request album's new body object's releaseDate
   // save  foundAlbum function
     // if err log
-    // else
-    //respond to client with json of saved 
+    // else respond to client with json of saved
   db.Album.findOne({_id: req.params.id}, function(err, foundAlbum) {
     if (err) { console.log('error', err); }
     foundAlbum.artistname = req.body.artistName;
@@ -169,17 +172,23 @@ app.put('/api/albums/:id', function updateAlbum(req, res) {
   });
 });
 
-
+// routes HTTP PUT request to /api/albums/:albumId/songs/:id, on success run function
+  // store albumId of request object in albumId variable
+  // store song id of request object in songId varibale
+  // find one album from album db using album id from request on success run function
+  // create variable foundSong, set value to be the song embedded in the found album
+  // create variable foundSong.name, set value to be the name of the requested song
+  // create variable ffoundSong.trackNumber, set value to be the trackNumber of the requested song
+  // save  foundAlbum function
+    // if err log
+    // else respond to client with json of saved
 app.put('/api/albums/:albumId/songs/:id', function(req, res) {
   var albumId = req.params.albumId;
   var songId = req.params.id;
   db.Album.findOne({_id: albumId}, function (err, foundAlbum) {
-    // find song embedded in album
     var foundSong = foundAlbum.songs.id(songId);
     foundSong.name = req.body.name;
     foundSong.trackNumber = req.body.trackNumber;
-
-    // save changes
     foundAlbum.save(function(err, saved) {
       if(err) { console.log('error', err); }
       res.json(saved);
@@ -187,28 +196,31 @@ app.put('/api/albums/:albumId/songs/:id', function(req, res) {
   });
 });
 
-
-
+// routes HTTP DELETE request to /api/albums/:albumId/songs/:id, on success run function S4S2 TC
+  // store albumId of request object in albumId variable
+  // store song id of request object in songId varibale
+  // console.log parameters of the request
+  // find one album from album db using album id from request on success run function
+  // if err log
+  // create variable foundSong, set value to be the song embedded in the found album
+  // remove found song
+  // save  foundAlbum function
+    // if err log
+    // else respond to client with json of saved
 app.delete('/api/albums/:albumId/songs/:id', function(req, res) {
   var albumId = req.params.albumId;
   var songId = req.params.id;
   console.log(req.params);
   db.Album.findOne({_id: albumId}, function (err, foundAlbum) {
     if (err) {console.log(error, err);}
-    // find song embedded in album
     var foundSong = foundAlbum.songs.id(songId);
-
-    // delete
     foundSong.remove();
-    // save changes
     foundAlbum.save(function(err, saved) {
       if(err) { console.log('error', err); }
       res.json(saved);
     });
   });
 });
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 /**********
  * SERVER *

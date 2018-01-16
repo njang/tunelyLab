@@ -1,7 +1,7 @@
 /* CLIENT-SIDE JS
 
 /* document ready */
-//use ajax to get the albums. Render them on the page. S1S2 TC
+//use ajax to get the albums. Render them on the page S1S2 TC
 //use ajax $.get to get all albums from server
 // on success render each album for all albums
 $(document).ready(function() {
@@ -60,13 +60,13 @@ $(document).ready(function() {
 
 /* End document ready */
 
-//edit each song S6S2
-//  handleUpdateSong function S6S2
+//edit each song S6S2 TC
+//  handleUpdateSong function
   //triggers function that prevents default, send content of the form to the server right away
   // get the values from the item on the modal and store in variables
   // log 'PUT ', url, name, trackNumber
-  //use ajax $.get to sned
-  //PUT request to update current url /api/albums/:album_id/songs/:song_id
+  //use $.ajax to send S6S4 TC
+  //PUT request to update current song by using url /api/albums/:album_id/songs/:song_id
   // add object containing trackNumber and name to request
   // on success call function that takes data from put request as parameter
     // update songs by calling updateSongsList function, passing in current albumId as parameter
@@ -88,7 +88,7 @@ function handleUpdateSong(e) {
   });
 }
 
-// handleEditSongsClick function S6S2
+// handleEditSongsClick function S6S2 TC
   //triggers function that prevents default, send content of the form to the server right away
   // get current album's album-id data and store in albumId variable
   //use ajax $.get to request songs from server
@@ -275,13 +275,13 @@ function handleDeleteAlbumClick(e) {
   // get song modal's album-id data and store in albumId variable
   // get value from songName input field and store in songName variable
   //get value from trackNumber input field and store in trackNumber variable
+  //formData object containing S3S5 TC
+    // songName input data
+    // trackNumber input data
 function handleNewSongSubmit(e) {
   var albumId = $('#songModal').data('album-id');
   var songName = $('#songName').val();
   var trackNumber = $('#trackNumber').val();
-  //formData object containing S3S5 TC
-    // songName input data
-    // trackNumber input data
   var formData = {
     name: songName,
     trackNumber: trackNumber
@@ -389,7 +389,7 @@ function generateAlbumHtml(album) {
  }
 
 // this function takes a single album and renders it to the page
-//edit the function renderAlbum to display one Album on the page. S1S1
+//edit the function renderAlbum to display one Album on the page. S1S1 TC
 function renderAlbum(album) {
   var html = generateAlbumHtml(album);
   console.log('rendering album:', album);

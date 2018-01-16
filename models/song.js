@@ -1,3 +1,4 @@
+// require mongoose
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
@@ -8,6 +9,9 @@ var SongSchema = new Schema({
   trackNumber: Number
 });
 
+//compile Song schema into Song model S1S3 TC
+//each document will be a 'Song' with properties declared in schema
 var Song = mongoose.model('Song', SongSchema);
 
+//export Song TC
 module.exports = Song;
