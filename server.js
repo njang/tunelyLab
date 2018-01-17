@@ -69,23 +69,22 @@ app.get('/api/albums', function albumsIndex(req, res) {
 
 // send /api/albums to client using post, on success execute albumsCreate function S2S3 TC
 //log and object containing parsed text from /api/albums body
-app.post('/api/albums', function albumCreate(req, res) {
-  console.log('body', req.body);
   // split the data in req.body.genres field at comma, map into new genres array, and remove trailing space using .trim S2S4
   // set /api/albums body data to genres array
+  //connect app.post route to album db S2S5
+    // create record in album database that has attributes of req.body
+      // logs error if err occurs
+      // logs new album if no eror
+      // respond with new album
+app.post('/api/albums', function albumCreate(req, res) {
+  console.log('body', req.body);
   var genres = req.body.genres.split(',').map(function(item) { return item.trim(); } );
   req.body.genres = genres;
-//connect app.post route to album db S2S5
-  // create record in album database that has attributes of req.body
-    // logs error if err occurs
-    // logs new album if no eror
-    // respond with new album
   db.Album.create(req.body, function(err, album) {
     if (err) { console.log('error', err); }
     console.log(album);
     res.json(album);
   });
-
 });
 
 // request /api/albums/:id endpoint from client using get, on success execute albumShow function  TC
@@ -115,16 +114,16 @@ app.get('/api/albums/:id/songs', function albumShow(req, res) {
   // log body
   // find one album from album db using albumid from request, on success call function
   // if err log error
+  // else create new db song and store in song variable
+  // add new song to album by pushing song to album.songs
+  // save album
+    // if err log
+    // else log saved album
+    // respond to client with song as json
 app.post('/api/albums/:albumId/songs', function songsCreate(req, res) {
   console.log('body', req.body);
   db.Album.findOne({_id: req.params.albumId}, function(err, album) {
     if (err) { console.log('error', err); }
-    //create new db song and store in song variable
-    // add new song to album by pushing song to album.songs
-    // save album
-      // if err log
-      // else log saved album
-      // respond to client with song as json
     var song = new db.Song(req.body);
     album.songs.push(song);
     album.save(function(err, savedAlbum) {
@@ -154,18 +153,18 @@ app.delete('/api/albums/:id', function deleteAlbum(req, res) {
 // routes HTTP PUT request to /api/albums/:id to , on success run updateAlbum function
   // log 'updating id' of request album's id
   // log 'received body' of request album's new body object
+  //Connect it to the database S5S3
+    //find one album from album db using album id from request on success run function
+    // if err log err
+    // else set foundAlbum.artistname to be the request album's new body object's artistName
+    // set foundAlbum.name to be the request album's new body object's name
+    // set foundAlbum.releaseDate to be the request album's new body object's releaseDate
+    // save  foundAlbum function
+      // if err log
+      // else respond to client with json of saved
 app.put('/api/albums/:id', function updateAlbum(req, res) {
   console.log('updating id ', req.params.id);
   console.log('received body ', req.body);
-//Connect it to the database S5S3
-  //find one album from album db using album id from request on success run function
-  // if err log err
-  // else set foundAlbum.artistname to be the request album's new body object's artistName
-  // set foundAlbum.name to be the request album's new body object's name
-  // set foundAlbum.releaseDate to be the request album's new body object's releaseDate
-  // save  foundAlbum function
-    // if err log
-    // else respond to client with json of saved
   db.Album.findOne({_id: req.params.id}, function(err, foundAlbum) {
     if (err) { console.log('error', err); }
     foundAlbum.artistname = req.body.artistName;
@@ -178,6 +177,7 @@ app.put('/api/albums/:id', function updateAlbum(req, res) {
   });
 });
 
+/*************************************************************************************/
 // routes HTTP PUT request to /api/albums/:albumId/songs/:id, on success run function
   // store albumId of request object in albumId variable
   // store song id of request object in songId varibale
@@ -201,6 +201,7 @@ app.put('/api/albums/:albumId/songs/:id', function(req, res) {
     });
   });
 });
+/*************************************************************************************/
 
 // routes HTTP DELETE request to /api/albums/:albumId/songs/:id, on success run function S4S2 TC
   // store albumId of request object in albumId variable
